@@ -1,12 +1,15 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, HideField } from '@nestjs/graphql';
 import { Post } from 'src/modules/post/entities/post.entity';
 import { Profile } from 'src/modules/profile/entities/profile.entity';
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @ObjectType()
@@ -39,4 +42,16 @@ export class User {
   @OneToOne(() => Profile)
   @Field(() => Profile)
   profile: Promise<Profile>;
+
+  @UpdateDateColumn()
+  @Field(() => Date)
+  updatedAt?: Date;
+
+  @CreateDateColumn()
+  @Field(() => Date)
+  createdAt?: Date;
+
+  @DeleteDateColumn()
+  @HideField()
+  deletedAt?: Date;
 }

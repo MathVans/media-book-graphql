@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserResolver } from './modules/user/user.resolver';
 import { UserModule } from './modules/user/user.module';
-import dbConfig from './config/db.config';
+import dbConfig from './config/prod.db.config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserService } from './modules/user/user.service';
@@ -17,6 +17,7 @@ import { ProfileResolver } from './modules/profile/profile.resolver';
 import { TagService } from './modules/tag/tag.service';
 import { ProfileService } from './modules/profile/profile.service';
 import { PostService } from './modules/post/post.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -33,5 +34,6 @@ import { PostService } from './modules/post/post.service';
     TagModule,
     ProfileModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
